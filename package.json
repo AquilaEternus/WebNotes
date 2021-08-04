@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "setup": "npm install && cd client && npm install",
-    "start": "node --exec babel-node server/server.js",
+    "start": "node babel-node server/server.js",
     "server": "nodemon server/server.js",
     "serverDev": "nodemon --exec babel-node server/server.js",
     "client": "cd client && npm run start",
