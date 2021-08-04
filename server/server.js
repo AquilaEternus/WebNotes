@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import path from 'path';
 import express from 'express';
+import helmet from 'helmet';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 
@@ -15,6 +16,7 @@ import userRoute from './routes/userRoute';
 const app = express();
 
 // Middleware
+app.use(helmet());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
