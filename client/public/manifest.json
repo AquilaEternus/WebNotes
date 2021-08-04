@@ -2,6 +2,5 @@
     "short_name": "Web Notes",
     "name": "WebNotes",
     "start_url": ".",
-    "display": "standalone",
-    "csp": "script-src 'self' 'unsafe-inline'; object-src 'self'"
+    "display": "standalone"
   }
