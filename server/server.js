@@ -3,7 +3,7 @@ import path from 'path';
 import express from 'express';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
-import morgan from 'morgan';
+//import morgan from 'morgan';
 
 import { errorHandler } from './middleware/errorHandler';
 
@@ -20,7 +20,7 @@ app.use(helmet());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 
 if (process.env.NODE_ENV === 'production') {
     // Serve any static files
