@@ -1,9 +1,10 @@
 import 'dotenv/config';
 import path from 'path';
+import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
-//import morgan from 'morgan';
+import morgan from 'morgan';
 
 import { errorHandler } from './middleware/errorHandler';
 
@@ -16,11 +17,12 @@ import userRoute from './routes/userRoute';
 const app = express();
 
 // Middleware
+app.use(cors());
 app.use(helmet());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(morgan('dev'));
+app.use(morgan('common'));
 
 if (process.env.NODE_ENV === 'production') {
     // Serve any static files
