@@ -9,7 +9,7 @@
     "server": "nodemon server/server.js",
     "serverDev": "nodemon --exec babel-node server/server.js",
     "client": "cd client && npm run start",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
