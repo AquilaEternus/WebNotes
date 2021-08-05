@@ -42,7 +42,7 @@ const Comment = (props) => {
                 <div className="comment-body">
                     <div className="comment-content">
                         
-                        <div class="card-author">
+                        <div className="card-author">
                             <img 
                                 alt="Profile Avatar"
                                 className="profile-picture-icon" 
@@ -55,7 +55,7 @@ const Comment = (props) => {
                     </div>
                     <div className="comment-actions">
                             <button onClick={setReplyTo} className="waves-effect waves-teal btn-flat">
-                                <i className="material-icons">reply</i>Reply {`(${!props.replies.length ? 0 : props.replies.length})`}
+                                <i className="material-icons">reply</i>Reply {`(${props.replies.length})`}
                             </button>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ const Confirmation = (props) => {
             <h4>{props.header}</h4>
             <p>{props.text}</p>
           </div>
-          <div class="modal-footer">
+          <div className="modal-footer">
             <button onClick={props.decline} className="modal-close btn-flat">
               Go Back
             </button>

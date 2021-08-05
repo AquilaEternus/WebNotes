@@ -5,7 +5,7 @@ import Reply from '../models/reply';
 export const postComment = async (req, res, next) => {
     try {
         const { note_id, comment_text } = req.body;
-        const newComment = new Comment({ user: req.user.id, note_id: note_id, text: comment_text });
+        const newComment = new Comment({ user: req.user.id, note_id: note_id, text: comment_text, replies: [] });
         await newComment.save();
         res.status(200).json(newComment);
     } catch (err) {
@@ -27,7 +27,24 @@ export const postReplyToComment = async (req, res, next) => {
         const { comment_id } = req.params;
         const newReply = new Reply({ user: req.user.id, comment_id, text: reply_text});
         await newReply.save();
-        return res.status(200).json(newReply);  
+        try {
+            const comment = await Comment.findOne({_id: comment_id}).exec();
+            comment.replies.push(newReply);
+            try {
+                await comment.save();
+                res.status(200).json(newReply);
+            } catch (err) {
+                // console.log(err);
+                const error = new Error('Internal error occurred.');
+                error.status = 500;
+                next(error);
+            }
+        } catch (err) {
+            // console.log(err);
+            const error = new Error('Internal error occurred. Could not save reply.');
+            error.status = 500;
+            next(error);
+        }    
     } catch (err) {
         // console.log(err);
         const error = new Error('Internal error occurred. Reply could not be created.');
@@ -63,11 +80,12 @@ export const getNoteComments = async (req, res, next) => {
                 path: 'user',
                 select: '-_id -password -email -__v -notes'
             }).exec();
+        console.log(comments)
         res.status(200).json(comments);
     } catch (err) {
         // console.log(err);
         const error = new Error('Internal error occurred.');
         error.status = 500;
-        next(error);
+        next(err);
     }
 }

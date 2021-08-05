@@ -20,7 +20,7 @@ const commentSchema = Schema({
         type: Boolean,
         default: false
     }, 
-    // replies: [{type: Schema.Types.ObjectId, ref: 'Reply'}]
+    replies: [{type: Schema.Types.ObjectId, ref: 'Reply'}]
 }, { timestamps: true });
 
 const Comment = mongoose.model('Comment', commentSchema);

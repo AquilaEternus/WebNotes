@@ -130,7 +130,7 @@ const EditNote = (props) => {
                         </div>
                         <div className="row">
                             <Editor
-                                tinymceScriptSrc={process.env.PUBLIC_URL + '/js/tinymce.min.js'}
+                                // tinymceScriptSrc={process.env.PUBLIC_URL + '/js/tinymce.min.js'}
                                 init={{
                                 height: 500,
                                 menubar: false,

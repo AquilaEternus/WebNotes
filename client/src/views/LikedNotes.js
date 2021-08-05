@@ -9,7 +9,7 @@ const LikedNotes = (props) => {
     const pageParam = new URLSearchParams(search).get('page') || 1;
     
     useEffect(() => {
-        console.log(props)
+        // console.log(props)
         window.scrollTo(0, 0);
         props.getLikedNotes(pageParam)
     }, [pageParam, props]);
