@@ -24,6 +24,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('common'));
 
+// Routes
+app.use('/v1/api/auth', authRoute);
+app.use('/v1/api/comments', commentRoute);
+app.use('/v1/api/notes', noteRoute);
+app.use('/v1/api/ratings', ratingRoute);
+app.use('/v1/api/user', userRoute);
+
 if (process.env.NODE_ENV === 'production') {
     // Serve any static files
     app.use(express.static(path.join(__dirname, '../client/build')));
@@ -33,13 +40,6 @@ if (process.env.NODE_ENV === 'production') {
         res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
     });
 }
-
-// Routes
-app.use('/v1/api/auth', authRoute);
-app.use('/v1/api/comments', commentRoute);
-app.use('/v1/api/notes', noteRoute);
-app.use('/v1/api/ratings', ratingRoute);
-app.use('/v1/api/user', userRoute);
 
 // Errors
 app.use(errorHandler);

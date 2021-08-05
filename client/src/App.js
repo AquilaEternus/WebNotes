@@ -21,7 +21,6 @@ import {
   Dashboard,
   EditNote,
   HomeNotes,
-  LikedComments,
   LikedNotes,
   Login,
   UserNotes,
