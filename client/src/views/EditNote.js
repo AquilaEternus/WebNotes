@@ -142,7 +142,8 @@ const EditNote = (props) => {
                         <div className="row">
                             <Editor
                                 init={{
-                                    skin: false,  content_css: false,
+                                skin: false,  
+                                content_css: false,
                                 height: 500,
                                 menubar: false,
                                 plugins: [
