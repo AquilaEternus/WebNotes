@@ -25,5 +25,3 @@ Install client dependencies and start the client server in the 'client' director
 npm install
 npm start
 ```
-
-###### Note: Set TOKEN_SECRET and REFRESH_TOKEN_SECRET variables to more secure values.
