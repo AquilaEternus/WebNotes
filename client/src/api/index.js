@@ -13,7 +13,7 @@ instance.interceptors.response.use(
       if (refreshToken && error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
         instance.interceptors.response.eject(this);
-        const res = await axios.post(`/api/auth/refresh-token`, { refreshToken: refreshToken });
+        const res = await axios.post(`/v1/api/auth/refresh-token`, { refreshToken: refreshToken });
         // instance.defaults.headers.common['x-auth-token'] = res.data.token;
         localStorage.setItem("token", res.data.token);
         // console.log("Old: " + originalRequest.headers['x-auth-token'])
