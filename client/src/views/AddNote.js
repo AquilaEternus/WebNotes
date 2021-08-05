@@ -6,6 +6,17 @@ import { connect } from 'react-redux';
 import { addNote } from '../actions/noteActions';
 import { clearErrors } from '../actions/errorActions';
 import { usePrevious } from '../helper/customHooks';
+import 'tinymce/tinymce';
+import 'tinymce/icons/default';
+import 'tinymce/themes/silver';
+import 'tinymce/plugins/paste';
+import 'tinymce/plugins/link';
+import 'tinymce/plugins/image';
+import 'tinymce/plugins/table';
+import 'tinymce/skins/ui/oxide/skin.min.css';
+import 'tinymce/skins/ui/oxide/content.min.css';
+// import 'tinymce/skins/content/default/content.min.css';
+// import '../App.css';
 import { Editor } from '@tinymce/tinymce-react';
 import Confirmation from '../components/modals/Confirmation';
 import ErrorBanner from '../components/error/ErrorBanner';
@@ -81,8 +92,9 @@ const AddNote = (props) => {
                     </div>
                     <div className="row">
                         <Editor
-                            tinymceScriptSrc="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"
                             init={{
+                            skin: false,  
+                            content_css: false,
                             height: 500,
                             menubar: false,
                             plugins: [
@@ -93,7 +105,7 @@ const AddNote = (props) => {
                             toolbar:
                                 `undo redo | formatselect | bold italic backcolor | \
                                 alignleft aligncenter alignright alignjustify | \
-                                bullist numlist outdent indent | removeformat | help`
+                                bullist numlist outdent indent | removeformat`
                             }}
                             onEditorChange={handleEditorChange}
                             value={content}
