@@ -1,6 +1,6 @@
 # WebNotes
 
-WebNotes is a web application created using MERN stack in which users can create and share with one another rich text formatted notes online.
+WebNotes is a social media application created using MERN stack in which users can create and publicly share rich text formatted notes online or keep it to themselves.
 
 Demo: [https://webnotes-demo.herokuapp.com/](https://webnotes-demo.herokuapp.com/)
 
@@ -25,3 +25,5 @@ Install client dependencies and start the client server in the 'client' director
 npm install
 npm start
 ```
+
+###### Note: Updating/uploading pictures will require using cloudinary.
