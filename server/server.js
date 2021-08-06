@@ -18,19 +18,14 @@ import userRoute from './routes/userRoute';
 const app = express();
 
 app.use(cors());
-helmet.contentSecurityPolicy({
-    directives: {
-        "default-src":[ "'self'" ],
-        "base-uri":[ "'self'" ],
-        "font-src":[ "'self'", "https:", "data:" ],
-        "frame-ancestors":[ "'self'" ],
-        "img-src":[ "'self'", "data:", "https://res.cloudinary.com"], 
-        "script-src":[ "'self'" ],
-        "script-src-attr":[ "'none'" ],
-        "style-src":[ "'self'", "https:", "'unsafe-inline'" ],
+app.use(helmet({
+    contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+            "img-src":[ "'self'", "data:", "https://res.cloudinary.com"], 
+        }
     }
-});
-app.use(helmet());
+}))
 app.use(compression());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
