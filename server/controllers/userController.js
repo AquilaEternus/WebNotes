@@ -2,7 +2,12 @@ import paginate from 'jw-paginate';
 import Note from '../models/note';
 import Rating from '../models/rating';
 import User from '../models/user';
-import { unlinkAsync } from '../helper/upload';
+import { 
+    dataUri, 
+    uploadPFPToCloudinary, 
+    deletePFPFromCloudinary 
+} from '../helper/uploads/profilePicture';
+
 
 /* Get a paginated list of notes belonging to the currently authorized user. */
 export const getUserNotes = async (req, res, next) => {
@@ -97,34 +102,58 @@ export const getUserLikedNotes = async (req, res, next) => {
     }
 }
 
-/* Update/Put the avatar picture's pathname of the currently authorized user and save the new avatar picture 
-locally in the server. */
-export const updateUserAvatar = async (req, res, next) => {
+/* Update/Put the profile picture's url of the currently authorized user and save the new profile picture
+in the cloudinary image server. */
+export const updateProfilePicture = async (req, res, next) => {
     try {
         const user = await User.findById(req.user.id);
-        if (user.avatarUrl !== 'public/default/avatar.png') {
-            try {
-                await unlinkAsync(user.avatarUrl);
-            } catch (err) {
-                // console.log(err)
-                const error = new Error('User avatar could not be updated.');
-                error.status = 500;
-                next(error);
-            }
-        }    
-        user.avatarUrl = req.file.path;      
-        try {
-            await user.save();
-            res.status(200).json({path: req.file.path});
-        } catch(err) {
-            // console.log(err)
-            const error = new Error('User avatar could not be updated.');
-            error.status = 500;
-            next(error);
+        if (req.file) {
+            const file = dataUri(req).content;
+            uploadPFPToCloudinary(file, (err, uploadResult) => {
+                if (err) {
+                    // console.log(err)
+                    const error = new Error('Internal error occurred.');
+                    error.status = 500;
+                    next(error);
+                }
+                if (user.pfp_url !== 'public/default/avatar.png') {
+                    const urlSplit = user.pfp_url.split('/');
+                    const publicId = urlSplit[urlSplit.length - 1].split('.')[0];
+                    deletePFPFromCloudinary(publicId, (err, result) => {
+                        if (err) {
+                            // console.log(err)
+                            const error = new Error('Previous profile picture could not be deleted properly.');
+                            error.status = 500;
+                            next(error); 
+                        }
+                        user.pfp_url = uploadResult.secure_url; 
+                        user.save((err, user) => {
+                            if (err) {
+                                // console.log(err)
+                                const error = new Error('User profile picture could not be updated.');
+                                error.status = 500;
+                                next(error);
+                            }
+                            res.status(200).json({path: user.pfp_url});
+                        })
+                    });
+                } else {
+                    user.pfp_url = result.secure_url; 
+                    user.save((err, user) => {
+                        if (err) {
+                            // console.log(err)
+                            const error = new Error('User profile picture could not be updated.');
+                            error.status = 500;
+                            next(error);
+                        }
+                        res.status(200).json({path: user.pfp_url});
+                    })
+                }
+            }); 
         }
     }
     catch (err) {
-        // findById() faild to find specified note.
+        // findById() faild to find specified user.
         // console.log(err);
         const error = new Error('Internal error occurred.');
         error.status = 500;

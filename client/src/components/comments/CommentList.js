@@ -7,7 +7,7 @@ const CommentList = (props) => {
                 key={comment._id}
                 comment_id={comment._id} 
                 user={comment.user.username}
-                avatar={comment.user.avatarUrl}
+                pfp_url={comment.user.pfp_url}
                 text={comment.text}
                 date={comment.createdAt} 
                 likes={comment.likes} 

@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import path from 'path';
+import compression from 'compression';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
@@ -19,6 +20,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(helmet());
+app.use(compression());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -51,7 +53,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 })
     .then(result => {
         app.listen(process.env.PORT, () => {
-            console.log('Server is listening on ', process.env.PORT);;
+            // console.log('Server is listening on ', process.env.PORT);;
         });
     })
     .catch(err => console.log(err))

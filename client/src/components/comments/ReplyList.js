@@ -10,7 +10,7 @@ const ReplyList = (props) => {
                     reply_id={reply._id}
                     comment_id={reply.comment_id} 
                     user={reply.user.username}
-                    avatar={reply.user.avatarUrl}
+                    pfp_url={reply.user.pfp_url}
                     text={reply.text}
                     date={reply.createdAt} 
                     likes={reply.likes} 

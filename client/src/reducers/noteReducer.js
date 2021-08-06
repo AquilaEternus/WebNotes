@@ -57,7 +57,7 @@ const noteReducer = (state = initialState, action) => {
             }
         case DELETE_NOTE_SUCCESS:
             const newUserNotes = state.notes.filter(note => note._id !== action.payload);
-            console.log(newUserNotes)
+            // console.log(newUserNotes)
             return {
                 ...state,
                 notes: newUserNotes,

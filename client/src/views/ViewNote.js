@@ -56,7 +56,7 @@ const ViewNote = (props) => {
                             <img 
                                 alt="Profile Avatar"
                                 className="profile-picture-icon" 
-                                src={`/${props.note.avatar}`} 
+                                src={`${props.note.pfp_url}`} 
                             />
                             <p style={{marginLeft: '1em'}}>{props.note.username} &middot; {getPostDate()}</p>
                         </div>

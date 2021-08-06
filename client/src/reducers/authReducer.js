@@ -46,7 +46,7 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 user: {
                     ...state.user,
-                    avatarUrl: action.payload
+                    pfp_url: action.payload
                 }
             }
         case LOGIN_FAIL:

@@ -49,7 +49,7 @@ const Dashboard = (props) => {
                 <img 
                     alt="Profile Avatar"
                     className="profile-picture" 
-                    src={`/${props.user.avatarUrl}`} 
+                    src={`${props.user.pfp_url}`} 
                 />
             </div>
             <h3 className="header-color">{props.user.username}'s Dashboard</h3>

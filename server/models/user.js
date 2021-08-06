@@ -8,7 +8,7 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    avatarUrl: {
+    pfp_url: {
         type: String,
         default: 'none',
         required: true

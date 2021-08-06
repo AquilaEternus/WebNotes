@@ -102,7 +102,7 @@ export const updateProfilePicture = (body) => (dispatch) => {
             "x-auth-token": localStorage.getItem("token")
         }
     }
-    axios.put('/v1/api/user/avatar', body, config)
+    axios.put('/v1/api/user/profile-picture', body, config)
         .then(res => dispatch({
             type: UPDATE_PROFILE_PICTURE,
             payload: res.data.path

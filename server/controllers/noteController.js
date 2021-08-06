@@ -10,7 +10,6 @@ export const getAllNotes = async (req, res, next) => {
                 path: 'user',
                 select: '-_id -password -email -__v -notes'
             }).exec();
-
             const page = parseInt(req.query.page) || 1;
             const pager = paginate(notes.length, page, (req.query.limit || 5));
             const pageOfNotes = notes.slice(pager.startIndex, pager.endIndex + 1);
@@ -122,7 +121,7 @@ export const getNoteById = async (req, res, next) => {
                 title: popNote.title,
                 text: popNote.text,
                 username: popNote.user.username,
-                avatar: popNote.user.avatarUrl,
+                pfp_url: popNote.user.pfp_url,
                 likes: popNote.likes,
                 dislikes: popNote.dislikes,
                 isPrivate: popNote.isPrivate,

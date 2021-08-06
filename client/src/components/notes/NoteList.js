@@ -11,7 +11,7 @@ const NoteList = (props) => {
                 title={note.title} 
                 text={note.text} 
                 author={note.user.username}
-                avatar={note.user.avatarUrl}
+                pfp_url={note.user.pfp_url}
                 inUserNotes={false}
             />
         </div>

@@ -46,7 +46,7 @@ const Comment = (props) => {
                             <img 
                                 alt="Profile Avatar"
                                 className="profile-picture-icon" 
-                                src={`/${props.avatar}`} 
+                                src={`${props.pfp_url}`} 
                             />
                             
                             <p style={{marginLeft: '1em'}}>{props.user} - {moment(props.date).fromNow()}</p>

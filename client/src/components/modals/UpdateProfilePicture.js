@@ -12,7 +12,7 @@ const UpdateProfilePicture = (props) => {
     const handleFileUpload = (e) => {
       e.preventDefault();
       const data = new FormData();
-      data.append('avatar', selectedFile);
+      data.append('profile-pic', selectedFile);
       props.updateProfilePicture(data);
     	props.accept();
     }
@@ -26,7 +26,7 @@ const UpdateProfilePicture = (props) => {
               <div className="file-field input-field">
                 <div className="btn">
                   <span>Image</span>
-                  <input encType="multipart/form-data" type="file" name="avatar" onChange={changeHandler}/>
+                  <input encType="multipart/form-data" type="file" name="profile-pic" onChange={changeHandler}/>
                 </div>
                 <div className="file-path-wrapper">
                   <input className="file-path validate" type="text"/>

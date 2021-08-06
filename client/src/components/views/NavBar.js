@@ -20,7 +20,7 @@ const NavBar = (props) => {
                             <img 
                                 alt="Profile Avatar"
                                 className="profile-picture-nav" 
-                                src={`/${props.user.avatarUrl}`} 
+                                src={`${props.user.pfp_url}`} 
                             />
                             <p style={{marginLeft: '1em'}}>{props.user.username}</p>
                         </div>

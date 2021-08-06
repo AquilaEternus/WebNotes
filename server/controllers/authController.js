@@ -26,7 +26,7 @@ export const postRegister = async (req, res, next) => {
             return res.status(500).json({ msg: 'Internal error occured.' })
         }
         try {
-            let newUser = new User({ username, email, password: hashedPassword, avatarUrl: 'public/default/avatar.png' });
+            let newUser = new User({ username, email, password: hashedPassword, pfp_url: '/public/default/avatar.png' });
             const savedUser = await newUser.save();
             const newRefreshToken = await Token.create({token: signRefreshToken(savedUser._id), user: savedUser.username});
             res.status(200).json({
@@ -36,7 +36,7 @@ export const postRegister = async (req, res, next) => {
                     id: savedUser._id,
                     username: savedUser.username,
                     email: savedUser.email,
-                    avatarUrl: savedUser.avatarUrl,
+                    pfp_url: savedUser.pfp_url,
                     createdAt: savedUser.createdAt
                 }
             })         
@@ -90,7 +90,7 @@ export const postLogin = async (req, res, next) => {
                         id: user._id,
                         username: user.username,
                         email: user.email,
-                        avatarUrl: user.avatarUrl,
+                        pfp_url: user.pfp_url,
                         createdAt: user.createdAt
                     }
                 });
