@@ -2,7 +2,7 @@
 
 WebNotes is a social media application created using MERN stack in which users can create and publicly share rich text formatted notes online or keep it to themselves.
 
-Demo: [https://webnotes-demo.herokuapp.com/](https://webnotes-demo.herokuapp.com/)
+Demo: [https://webnotes-demo.herokuapp.com/](https://webnotes-demo.herokuapp.com/) - Type "@userzero" in search bar to view example notes.
 
 ### Features
 
